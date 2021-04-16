@@ -61,7 +61,7 @@ After some trial and error I found three changes/additions that needed to be mad
 <li>the PATH needed to point to the <code>aarch64</code> version of LaTeX in stead of the <code>x86_64</code> version.</li>
 </ol>
 <p>You can find the changes I made in <a href="https://github.com/psomhorst/manim" target="_blank">my fork of the repo</a>.</p>
-<p>With these changes, the Docker container builds and works flawlessly, as far as I have tested it.
+<p>With these changes, the Docker container builds and works flawlessly, for as far as I have tested it.
 The speed differs a bit per project.
 I get the impression that especially writing and reading files is slower, while the actual compilation of the video files is just as fast or faster than in a virtual Linux machine. 
 The same project as I tested before compiles in 56 seconds in the Docker container, compared to 37 seconds in the virtual machine. 
