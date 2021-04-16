@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>Peter Somhorst - Blog</title>
+        <link rel="stylesheet" href="https://psomhorst.github.io/theme/css/main.css" />
+        <link href="https://psomhorst.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Peter Somhorst Atom Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://psomhorst.github.io/">Peter Somhorst</a></h1>
+                <nav><ul>
+                    <li class="active"><a href="https://psomhorst.github.io/category/blog.html">Blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://psomhorst.github.io/manim-and-docker-on-the-m1-macbook-pro.html">Manim and Docker on the M1 MacBook Pro</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2021-04-16T21:30:00+02:00">
+                Published: Fri 16 April 2021
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://psomhorst.github.io/author/peter-somhorst.html">Peter Somhorst</a>
+        </address>
+<p>In <a href="https://psomhorst.github.io/category/blog.html">Blog</a>.</p>
+
+</footer><!-- /.post-info --><p>With the recent release of <a href="https://www.docker.com/blog/released-docker-desktop-for-mac-apple-silicon/">Docker Desktop for Mac (Apple Silicon)</a>, I thought I'd give it a try. 
+Up to now, I've ignore Docker as a serious option for my projects.
+However, since I recently failed to install <a href="https://www.manim.community">Manim Community</a> and had to resolve to virtualizing Linux to make it run, the perfect opportunity presented itself.</p>
+<p>I set out and followed the instructions on the <a href="https://hub.docker.com/r/manimcommunity/manim">Docker Hub</a> page for the <code>manimcommunity/manim</code> container.
+Instructions were clear enough, and soon I had Manim running inside a Docker container.</p>
+<p>And boy was I disappointed. </p>
+<p>Manim was slow. 
+And I mean, really slow. 
+My M1 MacBook Pro with 16 GB of RAM is supposed to be quick. 
+But Manim running in a Docker container was much slower than I had gotten used to in a Linux virtual machine (Ubuntu 20.04.2 running in Parallels Desktop 16.3.2 Technical Preview).</p>
+<p>I tested a scene I've been working on. 
+On the virtualized Linux install, it took 37 seconds to build.
+In the Docker container it took 10 minutes and 15 seconds. 
+More than 15 times as long.</p>
+<p>Especially frustrating was the fact Manim seemed to hang about 70% into each partial video it created.
+Writing small TeX files took mulitple seconds. 
+This was not good.</p>
+<p>Docker warned be about this:<br>
+<code>WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested</code>.<br>
+Apparently this Docker container was not optimized for the new processor in the M1 Macs.
+I set out to find the proper container built for my Mac, but was unable to do so.</p>
+<p>It's always fun to start dabbling in a new-to-you technology like Docker only to be confronted with a huge roadblock not even an hour in.
+Luckily, I've had my challenges with installing LaTeX, Python and other things on my Macs and Linux installs before. 
+I had a fighting chance to get it working.</p>
+<p>I cloned the <a href="https://hub.docker.com/r/manimcommunity/manim">Docker Hub</a> repo and attempted to build it.
+I was quickly presented with a selection of build errors, ranging from missing compilers to PATHs not being set right.
+After some trial and error I found three changes/additions that needed to be made:</p>
+<ol>
+<li>installation of <code>build-essential</code> was required, probably for <code>g++</code> (GNU C compiler);</li>
+<li>installation of <code>cmake</code> was required to build one of the Python prerequisites that was not available for ARM processors;</li>
+<li>the PATH needed to point to the <code>aarch64</code> version of LaTeX in stead of the <code>x86_64</code> version.</li>
+</ol>
+<p>You can find the changes I made in <a href="https://github.com/psomhorst/manim/settings">my fork of the repo</a>.</p>
+<p>With these changes, the Docker container builds and works flawlessly, as far as I have tested it.
+The speed differs a bit per project.
+I get the impression that especially writing and reading files is slower, while the actual compilation of the video files is just as fast or faster than in a virtual Linux machine. 
+The same project as I tested before compiles in 56 seconds in the Docker container, compared to 37 seconds in the virtual machine. 
+It is a scene with a lot of TeX parts. 
+The creation of the temporary .tex files is the biggest bottleneck.
+Smaller projects with pure visuals are just as fast or faster in Docker as inside the virtual machine.</p>
+<p>In conclusion, running Manim in Docker on M1 Macs is possible and a good option for people who don't want to run a virtual machine. 
+Manim seems just as performant inside a Docker container as inside a virtual machine, except for reading/writing files.</p>
+<p>If you want to give it a try, run the command below to build the Docker container for yourself.
+I would be happy to provide prebuilt containers via Dockerhub, but I've seen enough new things for today. 
+If someone has an easy guide on how to provide a built for a specific architecture, let me know.</p>
+<div class="highlight"><pre><span></span><code><span class="err">docker build -f docker/Dockerfile github.com/psomhorst/manim</span>
+</code></pre></div>                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://www.python.org/">Python.org</a></li>
+                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://psomhorst.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
