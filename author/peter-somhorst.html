@@ -29,10 +29,10 @@
         </address>
 <p>In <a href="https://psomhorst.github.io/category/blog.html">Blog</a>.</p>
 
-</footer><!-- /.post-info --><p>With the recent release of <a href="https://www.docker.com/blog/released-docker-desktop-for-mac-apple-silicon/">Docker Desktop for Mac (Apple Silicon)</a>, I thought I'd give it a try. 
+</footer><!-- /.post-info --><p>With the recent release of <a href="https://www.docker.com/blog/released-docker-desktop-for-mac-apple-silicon/" target="_blank">Docker Desktop for Mac (Apple Silicon)</a>, I thought I'd give it a try. 
 Up to now, I've ignore Docker as a serious option for my projects.
-However, since I recently failed to install <a href="https://www.manim.community">Manim Community</a> and had to resolve to virtualizing Linux to make it run, the perfect opportunity presented itself.</p>
-<p>I set out and followed the instructions on the <a href="https://hub.docker.com/r/manimcommunity/manim">Docker Hub</a> page for the <code>manimcommunity/manim</code> container.
+However, since I recently failed to install <a href="https://www.manim.community" target="_blank">Manim Community</a> and had to resolve to virtualizing Linux to make it run, the perfect opportunity presented itself.</p>
+<p>I set out and followed the instructions on the <a href="https://hub.docker.com/r/manimcommunity/manim" target="_blank">Docker Hub</a> page for the <code>manimcommunity/manim</code> container.
 Instructions were clear enough, and soon I had Manim running inside a Docker container.</p>
 <p>And boy was I disappointed. </p>
 <p>Manim was slow. 
@@ -53,7 +53,7 @@ I set out to find the proper container built for my Mac, but was unable to do so
 <p>It's always fun to start dabbling in a new-to-you technology like Docker only to be confronted with a huge roadblock not even an hour in.
 Luckily, I've had my challenges with installing LaTeX, Python and other things on my Macs and Linux installs before. 
 I had a fighting chance to get it working.</p>
-<p>I cloned the <a href="https://hub.docker.com/r/manimcommunity/manim">Docker Hub</a> repo and attempted to build it.
+<p>I cloned the <a href="https://hub.docker.com/r/manimcommunity/manim" target="_blank">Docker Hub</a> repo and attempted to build it.
 I was quickly presented with a selection of build errors, ranging from missing compilers to PATHs not being set right.
 After some trial and error I found three changes/additions that needed to be made:</p>
 <ol>
@@ -61,7 +61,7 @@ After some trial and error I found three changes/additions that needed to be mad
 <li>installation of <code>cmake</code> was required to build one of the Python prerequisites that was not available for ARM processors;</li>
 <li>the PATH needed to point to the <code>aarch64</code> version of LaTeX in stead of the <code>x86_64</code> version.</li>
 </ol>
-<p>You can find the changes I made in <a href="https://github.com/psomhorst/manim/settings">my fork of the repo</a>.</p>
+<p>You can find the changes I made in <a href="https://github.com/psomhorst/manim/settings" target="_blank">my fork of the repo</a>.</p>
 <p>With these changes, the Docker container builds and works flawlessly, as far as I have tested it.
 The speed differs a bit per project.
 I get the impression that especially writing and reading files is slower, while the actual compilation of the video files is just as fast or faster than in a virtual Linux machine. 

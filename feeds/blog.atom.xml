@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Peter Somhorst - Blog</title><link href="https://psomhorst.github.io/" rel="alternate"></link><link href="https://psomhorst.github.io/feeds/blog.atom.xml" rel="self"></link><id>https://psomhorst.github.io/</id><updated>2021-04-16T21:30:00+02:00</updated><entry><title>Manim and Docker on the M1 MacBook Pro</title><link href="https://psomhorst.github.io/manim-and-docker-on-the-m1-macbook-pro.html" rel="alternate"></link><published>2021-04-16T21:30:00+02:00</published><updated>2021-04-16T21:30:00+02:00</updated><author><name>Peter Somhorst</name></author><id>tag:psomhorst.github.io,2021-04-16:/manim-and-docker-on-the-m1-macbook-pro.html</id><summary type="html">&lt;p&gt;With the recent release of &lt;a href="https://www.docker.com/blog/released-docker-desktop-for-mac-apple-silicon/"&gt;Docker Desktop for Mac (Apple Silicon)&lt;/a&gt;, I thought I'd give it a try. 
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Peter Somhorst - Blog</title><link href="https://psomhorst.github.io/" rel="alternate"></link><link href="https://psomhorst.github.io/feeds/blog.atom.xml" rel="self"></link><id>https://psomhorst.github.io/</id><updated>2021-04-16T21:30:00+02:00</updated><entry><title>Manim and Docker on the M1 MacBook Pro</title><link href="https://psomhorst.github.io/manim-and-docker-on-the-m1-macbook-pro.html" rel="alternate"></link><published>2021-04-16T21:30:00+02:00</published><updated>2021-04-16T21:30:00+02:00</updated><author><name>Peter Somhorst</name></author><id>tag:psomhorst.github.io,2021-04-16:/manim-and-docker-on-the-m1-macbook-pro.html</id><summary type="html">&lt;p&gt;With the recent release of &lt;a href="https://www.docker.com/blog/released-docker-desktop-for-mac-apple-silicon/" target="_blank"&gt;Docker Desktop for Mac (Apple Silicon)&lt;/a&gt;, I thought I'd give it a try. 
 Up to now, I've ignore Docker as a serious option for my projects.
-However, since I recently failed to install &lt;a href="https://www.manim.community"&gt;Manim Community&lt;/a&gt; and had to resolve to virtualizing Linux to make it …&lt;/p&gt;</summary><content type="html">&lt;p&gt;With the recent release of &lt;a href="https://www.docker.com/blog/released-docker-desktop-for-mac-apple-silicon/"&gt;Docker Desktop for Mac (Apple Silicon)&lt;/a&gt;, I thought I'd give it a try. 
+However, since I recently failed to install &lt;a href="https://www.manim.community" target="_blank"&gt;Manim Community&lt;/a&gt; and had to resolve to virtualizing Linux to make it …&lt;/p&gt;</summary><content type="html">&lt;p&gt;With the recent release of &lt;a href="https://www.docker.com/blog/released-docker-desktop-for-mac-apple-silicon/" target="_blank"&gt;Docker Desktop for Mac (Apple Silicon)&lt;/a&gt;, I thought I'd give it a try. 
 Up to now, I've ignore Docker as a serious option for my projects.
-However, since I recently failed to install &lt;a href="https://www.manim.community"&gt;Manim Community&lt;/a&gt; and had to resolve to virtualizing Linux to make it run, the perfect opportunity presented itself.&lt;/p&gt;
-&lt;p&gt;I set out and followed the instructions on the &lt;a href="https://hub.docker.com/r/manimcommunity/manim"&gt;Docker Hub&lt;/a&gt; page for the &lt;code&gt;manimcommunity/manim&lt;/code&gt; container.
+However, since I recently failed to install &lt;a href="https://www.manim.community" target="_blank"&gt;Manim Community&lt;/a&gt; and had to resolve to virtualizing Linux to make it run, the perfect opportunity presented itself.&lt;/p&gt;
+&lt;p&gt;I set out and followed the instructions on the &lt;a href="https://hub.docker.com/r/manimcommunity/manim" target="_blank"&gt;Docker Hub&lt;/a&gt; page for the &lt;code&gt;manimcommunity/manim&lt;/code&gt; container.
 Instructions were clear enough, and soon I had Manim running inside a Docker container.&lt;/p&gt;
 &lt;p&gt;And boy was I disappointed. &lt;/p&gt;
 &lt;p&gt;Manim was slow. 
@@ -25,7 +25,7 @@ I set out to find the proper container built for my Mac, but was unable to do so
 &lt;p&gt;It's always fun to start dabbling in a new-to-you technology like Docker only to be confronted with a huge roadblock not even an hour in.
 Luckily, I've had my challenges with installing LaTeX, Python and other things on my Macs and Linux installs before. 
 I had a fighting chance to get it working.&lt;/p&gt;
-&lt;p&gt;I cloned the &lt;a href="https://hub.docker.com/r/manimcommunity/manim"&gt;Docker Hub&lt;/a&gt; repo and attempted to build it.
+&lt;p&gt;I cloned the &lt;a href="https://hub.docker.com/r/manimcommunity/manim" target="_blank"&gt;Docker Hub&lt;/a&gt; repo and attempted to build it.
 I was quickly presented with a selection of build errors, ranging from missing compilers to PATHs not being set right.
 After some trial and error I found three changes/additions that needed to be made:&lt;/p&gt;
 &lt;ol&gt;
@@ -33,7 +33,7 @@ After some trial and error I found three changes/additions that needed to be mad
 &lt;li&gt;installation of &lt;code&gt;cmake&lt;/code&gt; was required to build one of the Python prerequisites that was not available for ARM processors;&lt;/li&gt;
 &lt;li&gt;the PATH needed to point to the &lt;code&gt;aarch64&lt;/code&gt; version of LaTeX in stead of the &lt;code&gt;x86_64&lt;/code&gt; version.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;You can find the changes I made in &lt;a href="https://github.com/psomhorst/manim/settings"&gt;my fork of the repo&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You can find the changes I made in &lt;a href="https://github.com/psomhorst/manim/settings" target="_blank"&gt;my fork of the repo&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;With these changes, the Docker container builds and works flawlessly, as far as I have tested it.
 The speed differs a bit per project.
 I get the impression that especially writing and reading files is slower, while the actual compilation of the video files is just as fast or faster than in a virtual Linux machine. 
